@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		9D95AA652D9F0DE100BD64B0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 9D95AA642D9F0DD300BD64B0 /* .gitignore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		9D95AA482D9F0A3E00BD64B0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		9D95AA372D9F0A3D00BD64B0 /* VirtualMachineManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirtualMachineManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D95AA472D9F0A3E00BD64B0 /* VirtualMachineManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirtualMachineManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D95AA512D9F0A3F00BD64B0 /* VirtualMachineManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirtualMachineManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D95AA642D9F0DD300BD64B0 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +80,7 @@
 		9D95AA2E2D9F0A3D00BD64B0 = {
 			isa = PBXGroup;
 			children = (
+				9D95AA642D9F0DD300BD64B0 /* .gitignore */,
 				9D95AA392D9F0A3D00BD64B0 /* VirtualMachineManager */,
 				9D95AA4A2D9F0A3E00BD64B0 /* VirtualMachineManagerTests */,
 				9D95AA542D9F0A3F00BD64B0 /* VirtualMachineManagerUITests */,
@@ -212,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D95AA652D9F0DE100BD64B0 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
