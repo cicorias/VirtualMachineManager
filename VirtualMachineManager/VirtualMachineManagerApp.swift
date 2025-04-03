@@ -9,24 +9,33 @@ import SwiftUI
 import SwiftData
 
 @main
-struct VirtualMachineManagerApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
+struct VMManagerApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .modelContainer(for: VirtualMachine.self, inMemory: true)
         }
-        .modelContainer(sharedModelContainer)
     }
 }
+
+//struct VirtualMachineManagerApp: App {
+//    var sharedModelContainer: ModelContainer = {
+//        let schema = Schema([
+//            Item.self,
+//        ])
+//        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+//
+//        do {
+//            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+//        } catch {
+//            fatalError("Could not create ModelContainer: \(error)")
+//        }
+//    }()
+//
+//    var body: some Scene {
+//        WindowGroup {
+//            ContentView()
+//        }
+//        .modelContainer(sharedModelContainer)
+//    }
+//}

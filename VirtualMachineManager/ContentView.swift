@@ -9,51 +9,66 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    @Query private var vms: [VirtualMachine]
+    @State private var selectedVM: VirtualMachine?
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
+    
     var body: some View {
         NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
+            List(vms, selection: $selectedVM) { vm in
+                Label(vm.name, systemImage: "desktopcomputer")
+                    .badge(vm.status.badgeText)
             }
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-            .toolbar {
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
+            .navigationTitle("Virtual Machines")
         } detail: {
-            Text("Select an item")
+            if let vm = selectedVM {
+                VMDetailView(vm: vm)
+            } else {
+                Text("Select a VM")
+                    .foregroundColor(.secondary)
+            }
         }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+        .onAppear {
+            // Insert sample data if no VMs exist
+            if vms.isEmpty {
+                let vm1 = VirtualMachine(
+                    name: "Ubuntu 22.04",
+                    status: .running,
+                    os: "Ubuntu 22.04",
+                    cpu: 2,
+                    ram: 4,
+                    disk: 64,
+                    snapshots: ["Before Update", "Clean Install"]
+                )
+                let vm2 = VirtualMachine(
+                    name: "Windows 11 Dev",
+                    status: .stopped,
+                    os: "Windows 11",
+                    cpu: 4,
+                    ram: 8,
+                    disk: 128,
+                    snapshots: ["Fresh Setup"]
+                )
+                let vm3 = VirtualMachine(
+                    name: "Fedora Test",
+                    status: .paused,
+                    os: "Fedora 39",
+                    cpu: 2,
+                    ram: 2,
+                    disk: 32,
+                    snapshots: []
+                )
+                modelContext.insert(vm1)
+                modelContext.insert(vm2)
+                modelContext.insert(vm3)
             }
         }
     }
 }
 
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }
+
