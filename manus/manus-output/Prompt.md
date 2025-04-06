@@ -1,0 +1,1 @@
+provide the code for a macOS swift app that can will allow creation of virtual machines using the vzframework and have a left hand navigation to see each vm status, along with ability to add new VM for linux
